@@ -11,7 +11,7 @@ const projects = [
     {
         value: "portfolio",
         title: "Portfolio",
-        image: "/projects/Portfolio.png",
+        image: "/projects/portfolio.png",
         intro:
             "Personal portfolio website built with Next.js and Tailwind CSS, designed to showcase my software projects, infrastructure work, and design work in a modern and responsive interface.",
         stack: [

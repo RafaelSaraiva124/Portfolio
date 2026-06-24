@@ -9,6 +9,7 @@ import { Navbar } from "@/components/navbar/navbar";
 import Profilecard from "@/components/profile/profilecard";
 import ContactForm from "@/components/contactForm/contactForm";
 
+
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -20,10 +21,56 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Portfolio",
-    description: "Personal developer portfolio",
-};
+    title: "Rafael Saraiva | Software Engineer Portfolio",
+    description:
+        "Software Engineer specializing in full-stack web development, system architecture, Docker, Proxmox and self-hosted infrastructure. Explore my projects and experience.",
 
+    keywords: [
+        "Rafael Saraiva",
+        "Software Engineer",
+        "Full Stack Developer",
+        "Next.js Developer",
+        "React Developer",
+        "Docker",
+        "Proxmox",
+        "Web Development Portfolio",
+    ],
+
+    authors: [{ name: "Rafael Saraiva" }],
+    creator: "Rafael Saraiva",
+
+    metadataBase: new URL("https://portfolio.g0dr.pt/"),
+
+    openGraph: {
+        title: "Rafael Saraiva | Software Engineer Portfolio",
+        description:
+            "Full-stack developer focused on scalable web apps, infrastructure and modern UI/UX.",
+        url: "https://portfolio.g0dr.pt/",
+        siteName: "Rafael Saraiva Portfolio",
+        images: [
+            {
+                url: "/og.png",
+                width: 1200,
+                height: 630,
+            },
+        ],
+        locale: "en_US",
+        type: "website",
+    },
+
+    twitter: {
+        card: "summary_large_image",
+        title: "Rafael Saraiva Portfolio",
+        description:
+            "Full-stack developer focused on modern web apps and infrastructure.",
+        images: ["/og.png"],
+    },
+
+    robots: {
+        index: true,
+        follow: true,
+    },
+};
 export default function RootLayout({
                                        children,
                                    }: {
