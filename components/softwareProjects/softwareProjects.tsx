@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Accordion,
     AccordionContent,
@@ -7,7 +9,6 @@ import {
 import Image from "next/image";
 
 const projects = [
-
     {
         value: "portfolio",
         title: "Portfolio",
@@ -66,12 +67,12 @@ export function SoftwareProjects() {
                 >
                     <AccordionTrigger className="py-5">
                         <div className="flex items-center gap-4">
-
                             <div className="relative h-20 w-20 md:h-24 md:w-44 overflow-hidden rounded-xl border">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
                                     fill
+                                    sizes="(max-width: 768px) 80px, 176px"
                                     className="object-cover"
                                 />
                             </div>
@@ -79,15 +80,14 @@ export function SoftwareProjects() {
                             <div className="flex flex-col items-start text-left">
                                 <span className="font-medium">{project.title}</span>
                                 <span className="text-sm text-muted-foreground">
-                  Personal Project
-                </span>
+                                    Personal Project
+                                </span>
                             </div>
                         </div>
                     </AccordionTrigger>
 
                     <AccordionContent className="px-4 pb-5">
                         <div className="space-y-3">
-
                             <p className="text-muted-foreground leading-relaxed">
                                 {project.intro}
                             </p>
@@ -98,11 +98,10 @@ export function SoftwareProjects() {
                                         key={tech}
                                         className="text-xs px-2 py-1 rounded-md border bg-muted/40"
                                     >
-                    {tech}
-                  </span>
+                                        {tech}
+                                    </span>
                                 ))}
                             </div>
-
                         </div>
                     </AccordionContent>
                 </AccordionItem>

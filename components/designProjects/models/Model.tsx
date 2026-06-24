@@ -9,6 +9,7 @@ function ShirtModel() {
     const groupRef = useRef<THREE.Group>(null);
     const { scene } = useGLTF("/models/shirt.glb");
     const [showBack, setShowBack] = useState(false);
+    const elapsedTime = useRef(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -54,6 +55,8 @@ function ShirtModel() {
     useFrame((state, delta) => {
         if (!groupRef.current) return;
 
+        elapsedTime.current += delta;
+
         const targetRotation = showBack ? Math.PI : 0;
 
         groupRef.current.rotation.y = THREE.MathUtils.damp(
@@ -63,10 +66,10 @@ function ShirtModel() {
             delta
         );
 
-        const t = state.clock.elapsedTime;
+        const t = elapsedTime.current;
 
         groupRef.current.rotation.y += Math.sin(t * 1.2) * 0.02;
-        groupRef.current.position.y = Math.sin(t * 2.5) * 0.04;
+        groupRef.current.position.y = Math.sin(t * 0.2) * 0.04;
     });
 
     return (
@@ -80,7 +83,7 @@ export default function Model() {
     return (
         <div className="w-full h-[700px]">
             <Canvas
-                camera={{ position: [0, 0, 8], fov: 50 }}
+                camera={{ position: [0, 0, 9], fov: 50 }}
                 gl={{
                     antialias: true,
                     toneMapping: THREE.ACESFilmicToneMapping,
