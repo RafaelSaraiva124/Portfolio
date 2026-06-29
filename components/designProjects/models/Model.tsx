@@ -92,31 +92,28 @@ export default function Model() {
     const rawInfluence = useRef(0);
     const [dragInfluence, setDragInfluence] = useState(0);
     const [grabbing, setGrabbing] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    const startDrag = useCallback((x: number) => {
         isDragging.current = true;
         setGrabbing(true);
-        lastX.current = e.clientX;
-        (e.target as HTMLElement).setPointerCapture(e.pointerId);
+        lastX.current = x;
     }, []);
 
-    const handlePointerMove = useCallback(
-        (e: React.PointerEvent) => {
-            if (!isDragging.current || lastX.current === null) return;
-            const delta = e.clientX - lastX.current;
-            rawInfluence.current = THREE.MathUtils.clamp(
-                rawInfluence.current + delta * 0.04,
-                -1,
-                1
-            );
-            setDragInfluence(rawInfluence.current);
-            lastX.current = e.clientX;
-            invalidate();
-        },
-        []
-    );
+    const moveDrag = useCallback((x: number) => {
+        if (!isDragging.current || lastX.current === null) return;
+        const delta = x - lastX.current;
+        rawInfluence.current = THREE.MathUtils.clamp(
+            rawInfluence.current + delta * 0.04,
+            -1,
+            1
+        );
+        setDragInfluence(rawInfluence.current);
+        lastX.current = x;
+        invalidate();
+    }, []);
 
-    const handlePointerUp = useCallback(() => {
+    const endDrag = useCallback(() => {
         isDragging.current = false;
         setGrabbing(false);
         lastX.current = null;
@@ -125,14 +122,45 @@ export default function Model() {
         invalidate();
     }, []);
 
+    const handleMouseDown = useCallback((e: React.MouseEvent) => startDrag(e.clientX), [startDrag]);
+    const handleMouseMove = useCallback((e: React.MouseEvent) => moveDrag(e.clientX), [moveDrag]);
+    const handleMouseUp = useCallback(() => endDrag(), [endDrag]);
+
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        const onTouchStart = (e: TouchEvent) => {
+            startDrag(e.touches[0].clientX);
+        };
+
+        const onTouchMove = (e: TouchEvent) => {
+            e.preventDefault(); // evita scroll da página durante o drag
+            moveDrag(e.touches[0].clientX);
+        };
+
+        const onTouchEnd = () => endDrag();
+
+        el.addEventListener("touchstart", onTouchStart, { passive: true });
+        el.addEventListener("touchmove", onTouchMove, { passive: false });
+        el.addEventListener("touchend", onTouchEnd, { passive: true });
+
+        return () => {
+            el.removeEventListener("touchstart", onTouchStart);
+            el.removeEventListener("touchmove", onTouchMove);
+            el.removeEventListener("touchend", onTouchEnd);
+        };
+    }, [startDrag, moveDrag, endDrag]);
+
     return (
         <div
+            ref={containerRef}
             className="relative w-full h-[700px] select-none"
             style={{ cursor: grabbing ? "grabbing" : "grab" }}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerLeave={handlePointerUp}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
         >
             <Canvas
                 camera={{ position: [0, 0, 9], fov: 38 }}
@@ -153,11 +181,8 @@ export default function Model() {
                     intensity={5}
                     castShadow
                 />
-
                 <Environment preset="apartment" environmentIntensity={0.6} />
-
                 <ShirtModel dragInfluence={dragInfluence} />
-
                 <ContactShadows
                     position={[0, -1.8, 0]}
                     opacity={0.18}
