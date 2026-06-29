@@ -1,7 +1,43 @@
 import { Separator } from "@/components/ui/separator";
 import { AboutMe } from "@/components/about/aboutme";
 import React from "react";
+import type { Metadata } from "next";
 
+
+export const metadata: Metadata = {
+    title: "Home",
+    description:
+        "Rafael Saraiva — Software Engineering graduate building full-stack web apps, backend systems, Docker infrastructure, and self-hosted services with Proxmox.",
+    alternates: {
+        canonical: "https://portfolio.g0dr.pt",
+    },
+};
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Rafael Saraiva",
+    url: "https://portfolio.g0dr.pt",
+    jobTitle: "Software Engineer",
+    description:
+        "Software Engineering graduate specialising in full-stack web development, backend systems, Docker, Proxmox, and self-hosted infrastructure.",
+    knowsAbout: [
+        "JavaScript",
+        "React",
+        "Next.js",
+        "Docker",
+        "Proxmox",
+        "Linux",
+        "Backend Development",
+        "Full-Stack Development",
+        "System Design",
+        "Self-Hosted Infrastructure",
+    ],
+    knowsLanguage: ["English", "Portuguese"],
+    sameAs: [
+        "https://github.com/RafaelSaraiva124",
+    ],
+};
 export default function Home() {
     return (
         <div className="flex flex-col items-center">

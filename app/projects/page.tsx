@@ -48,7 +48,9 @@ export default function Page() {
                         From concept to 3D visualization, this project showcases the complete design process behind a modern sports jersey, combining branding, aesthetics, and attention to detail.
                     </p>
 
-                    <div className="w-full h-[600px] sm:h-[600px] md:h-[600px] lg:h-[700px] mt-6 md:mt-10 flex items-center justify-center bg-gradient-to-br from-white via-zinc-50 to-neutral-100 dark:from-zinc-900 dark:via-zinc-800 dark:to-neutral-900 rounded-xl md:rounded-2xl overflow-visible border border-zinc-200 dark:border-zinc-700">
+                    <div className="w-full h-[600px] lg:h-[700px] mt-6 md:mt-10 relative rounded-xl md:rounded-2xl overflow-hidden border border-zinc-200/60 dark:border-zinc-700/50 shadow-sm dark:shadow-none">
+                        <div className="absolute inset-0 bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-900 dark:to-zinc-950" />
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,rgba(255,255,255,0.6),transparent)] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,rgba(255,255,255,0.04),transparent)]" />
                         <Model />
                     </div>
 

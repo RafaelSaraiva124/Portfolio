@@ -28,7 +28,8 @@ const projects = [
         title: "StayNet",
         image: "/projects/staynet.png",
         intro:
-            "StayNet is a full-stack accommodation management platform built with a modern, scalable architecture focused on performance, modularity, and real-world production patterns.",
+            "Developed as my final year project, StayNet is a hotel management platform designed to centralize and simplify hotel operations. The system allows the management of hotels, rooms, bookings, and payments in a structured and efficient way. It focuses on data organization, user management, and scalable backend architecture, demonstrating full-stack development skills and the ability to design and implement a complete end-to-end software solution.",
+
         stack: [
             "Next.js",
             "Tailwind CSS",

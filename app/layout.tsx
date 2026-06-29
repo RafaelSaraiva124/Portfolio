@@ -29,9 +29,15 @@ const anton = Anton({
 
 
 export const metadata: Metadata = {
-    title: "Rafael Saraiva | Software Engineer Portfolio",
+    metadataBase: new URL("https://portfolio.g0dr.pt"),
+
+    title: {
+        default: "Rafael Saraiva | Software Engineer",
+        template: "%s | Rafael Saraiva",
+    },
+
     description:
-        "Software Engineer specializing in full-stack web development, system architecture, Docker, Proxmox and self-hosted infrastructure. Explore my projects and experience.",
+        "Software Engineering graduate specialising in full-stack web development, backend systems, Docker, Proxmox, and self-hosted infrastructure. Explore my projects and experience.",
 
     keywords: [
         "Rafael Saraiva",
@@ -41,42 +47,44 @@ export const metadata: Metadata = {
         "React Developer",
         "Docker",
         "Proxmox",
+        "Linux",
         "Web Development Portfolio",
+        "Backend Developer",
+        "Infrastructure",
     ],
 
-    authors: [{ name: "Rafael Saraiva" }],
+    authors: [{ name: "Rafael Saraiva", url: "https://portfolio.g0dr.pt" }],
     creator: "Rafael Saraiva",
 
-    metadataBase: new URL("https://portfolio.g0dr.pt/"),
-
     openGraph: {
-        title: "Rafael Saraiva | Software Engineer Portfolio",
+        title: "Rafael Saraiva | Software Engineer",
         description:
-            "Full-stack developer focused on scalable web apps, infrastructure and modern UI/UX.",
-        url: "https://portfolio.g0dr.pt/",
-        siteName: "Rafael Saraiva Portfolio",
-        images: [
-            {
-                url: "/og.png",
-                width: 1200,
-                height: 630,
-            },
-        ],
+            "Full-stack developer focused on scalable web apps, infrastructure, and modern UI/UX.",
+        url: "https://portfolio.g0dr.pt",
+        siteName: "Rafael Saraiva",
+        images: [{ url: "/og.png", width: 1200, height: 630, alt: "Rafael Saraiva portfolio" }],
         locale: "en_US",
         type: "website",
     },
 
     twitter: {
         card: "summary_large_image",
-        title: "Rafael Saraiva Portfolio",
+        title: "Rafael Saraiva | Software Engineer",
         description:
-            "Full-stack developer focused on modern web apps and infrastructure.",
+            "Full-stack developer focused on scalable web apps, infrastructure, and modern UI/UX.",
         images: ["/og.png"],
     },
 
     robots: {
         index: true,
         follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-snippet": -1,
+            "max-image-preview": "large",
+            "max-video-preview": -1,
+        },
     },
 };
 export default function RootLayout({
