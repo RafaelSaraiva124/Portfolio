@@ -3,13 +3,63 @@ import { AboutMe } from "@/components/about/aboutme";
 import React from "react";
 import type { Metadata } from "next";
 
-
 export const metadata: Metadata = {
-    title: "Home",
+    metadataBase: new URL("https://portfolio.g0dr.pt"),
+    title: {
+        default: "Rafael Saraiva | Software Engineer",
+        template: "%s | Rafael Saraiva",
+    },
     description:
         "Rafael Saraiva — Software Engineering graduate building full-stack web apps, backend systems, Docker infrastructure, and self-hosted services with Proxmox.",
+    keywords: [
+        "Rafael Saraiva",
+        "Software Engineer",
+        "Full-Stack Developer",
+        "Next.js",
+        "React",
+        "Docker",
+        "Proxmox",
+        "Self-Hosted Infrastructure",
+        "Portfolio",
+    ],
+    authors: [{ name: "Rafael Saraiva", url: "https://portfolio.g0dr.pt" }],
+    creator: "Rafael Saraiva",
     alternates: {
         canonical: "https://portfolio.g0dr.pt",
+    },
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        url: "https://portfolio.g0dr.pt",
+        siteName: "Rafael Saraiva — Portfolio",
+        title: "Rafael Saraiva | Software Engineer",
+        description:
+            "Software Engineering graduate building full-stack web apps, backend systems, Docker infrastructure, and self-hosted services with Proxmox.",
+        images: [
+            {
+                url: "/og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "Rafael Saraiva — Software Engineer Portfolio",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Rafael Saraiva | Software Engineer",
+        description:
+            "Software Engineering graduate building full-stack web apps, backend systems, Docker infrastructure, and self-hosted services with Proxmox.",
+        images: ["/og-image.png"],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
     },
 };
 
@@ -34,21 +84,25 @@ const jsonLd = {
         "Self-Hosted Infrastructure",
     ],
     knowsLanguage: ["English", "Portuguese"],
-    sameAs: [
-        "https://github.com/RafaelSaraiva124",
-    ],
+    sameAs: ["https://github.com/RafaelSaraiva124"],
 };
+
 export default function Home() {
     return (
         <div className="flex flex-col items-center">
-            <main className="grid grid-cols-1 w-full max-w-6xl gap-10 sm:gap-16 px-4 sm:px-8 lg:px-16 pt-4 pb-0 items-center">
-                <div className="flex flex-col items-start">
-                    <h1 className="font-anton text-5xl sm:text-6xl md:text-8xl leading-none">
-                        SOFTWARE
-                    </h1>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
 
-                    <h1 className="font-anton text-5xl sm:text-6xl md:text-8xl text-zinc-500 leading-none">
-                        ENGINEER
+            <main className="grid grid-cols-1 w-full max-w-6xl gap-10 sm:gap-16 px-4 sm:px-8 lg:px-16 pt-4 pb-0 items-center">
+                <section className="flex flex-col items-start" aria-labelledby="main-heading">
+                    <h1
+                        id="main-heading"
+                        className="font-anton text-5xl sm:text-6xl md:text-8xl leading-none"
+                    >
+                        SOFTWARE
+                        <span className="block text-zinc-500">ENGINEER</span>
                     </h1>
 
                     <p className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl font-zalando">
@@ -58,7 +112,6 @@ export default function Home() {
                     </p>
 
                     <div className="flex flex-row justify-between gap-2 mt-10 w-full">
-
                         <div className="flex flex-col">
                             <h2 className="text-3xl sm:text-5xl md:text-6xl font-semibold">
                                 6+
@@ -85,9 +138,7 @@ export default function Home() {
                                 Proxmox <br /> Services
                             </p>
                         </div>
-
                     </div>
-
 
                     <Separator className="w-full mt-8" />
 
@@ -96,7 +147,7 @@ export default function Home() {
                     </div>
 
                     <Separator className="w-full mt-8" />
-                </div>
+                </section>
             </main>
         </div>
     );
