@@ -1,40 +1,46 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
+
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 const projects = [
     {
         value: "portfolio",
         title: "Portfolio",
+        href: "/projects/portfolio",
         image: "/projects/portfolio.png",
         intro:
-            "Personal portfolio website built with Next.js and Tailwind CSS, designed to showcase my software projects, infrastructure work, and design work in a modern and responsive interface.",
+            "Personal portfolio website built with Next.js and Tailwind CSS, designed to showcase my software engineering projects, infrastructure, and technical experience through a modern, responsive and SEO-optimised interface.",
         stack: [
             "Next.js",
             "Tailwind CSS",
             "shadcn/ui",
             "Three.js",
-            "React-three-fiber",
+            "React Three Fiber",
         ],
     },
     {
         value: "staynet",
         title: "StayNet",
+        href: "/projects/staynet",
         image: "/projects/staynet.png",
         intro:
-            "Developed as my final year project, StayNet is a hotel management platform designed to centralize and simplify hotel operations. The system allows the management of hotels, rooms, bookings, and payments in a structured and efficient way. It focuses on data organization, user management, and scalable backend architecture, demonstrating full-stack development skills and the ability to design and implement a complete end-to-end software solution.",
-
+            "Developed as my final-year Software Engineering project, StayNet is a full-stack hotel booking and management platform that centralises reservations, room management, guest operations and secure online payments within a single application.",
         stack: [
             "Next.js",
             "Tailwind CSS",
             "shadcn/ui",
-            "Neon Database",
+            "Neon PostgreSQL",
             "Drizzle ORM",
             "Auth.js",
             "Stripe",
@@ -46,10 +52,17 @@ const projects = [
     {
         value: "rentwise",
         title: "RentWise",
+        href: "https://github.com/RafaelSaraiva124/RentWise",
         image: "/projects/rentwise.jpg",
         intro:
-            "RentWise is a full-stack property management platform designed to help landlords efficiently manage rentals, tenants, and payments.",
-        stack: ["Next.js", "NeonDataBase", "Drizzle", "Tailwind", "Auth.js"],
+            "RentWise is a full-stack property management platform designed to simplify rental management, tenant administration and payment tracking.",
+        stack: [
+            "Next.js",
+            "Neon PostgreSQL",
+            "Drizzle ORM",
+            "Tailwind CSS",
+            "Auth.js",
+        ],
     },
 ];
 
@@ -79,7 +92,10 @@ export function SoftwareProjects() {
                             </div>
 
                             <div className="flex flex-col items-start text-left">
-                                <span className="font-medium">{project.title}</span>
+                                <span className="font-medium text-lg">
+                                    {project.title}
+                                </span>
+
                                 <span className="text-sm text-muted-foreground">
                                     Personal Project
                                 </span>
@@ -88,20 +104,29 @@ export function SoftwareProjects() {
                     </AccordionTrigger>
 
                     <AccordionContent className="px-4 pb-5">
-                        <div className="space-y-3">
-                            <p className="text-muted-foreground leading-relaxed">
+                        <div className="space-y-5">
+                            <p className="leading-relaxed text-muted-foreground">
                                 {project.intro}
                             </p>
 
-                            <div className="flex flex-wrap gap-2 pt-2">
+                            <div className="flex flex-wrap gap-2">
                                 {project.stack.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="text-xs px-2 py-1 rounded-md border bg-muted/40"
+                                        className="rounded-md border bg-muted/40 px-2 py-1 text-xs"
                                     >
                                         {tech}
                                     </span>
                                 ))}
+                            </div>
+
+                            <div className="flex justify-end">
+                                <Button asChild>
+                                    <Link href={project.href}>
+                                        Learn More
+                                        <ArrowUpRight className="ml-2 h-4 w-4" />
+                                    </Link>
+                                </Button>
                             </div>
                         </div>
                     </AccordionContent>

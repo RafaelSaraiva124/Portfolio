@@ -1,6 +1,10 @@
 import React from 'react'
 import { FaGithub, FaLinkedin  } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
+import { getMyAge } from "@/lib/get-age";
+
+
+
 const Profilecard = () => {
     return (
         <div className="flex flex-col items-center justify-center rounded-xl bg-card px-8 py-10 text-foreground shadow-lg border border-border w-[320px] max-h-[600px]">
@@ -15,8 +19,7 @@ const Profilecard = () => {
                 </h1>
 
                 <p className="text-muted-foreground font-zalando text-xl text-center px-2">
-                    Just starting my journey in software development, turning learning into real-world projects.
-                </p>
+                    {getMyAge()}-year-old Software Engineer from Portugal with a passion for full-stack development, DevOps, cloud infrastructure.</p>
             </div>
 
             <div className="flex flex-row items-center gap-5 mt-6">

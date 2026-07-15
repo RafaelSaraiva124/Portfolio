@@ -106,9 +106,21 @@ export default function Home() {
                     </h1>
 
                     <p className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl font-zalando">
-                        Software developer passionate about building clean and scalable web applications,
-                        with a strong interest in self-hosting, Proxmox, Docker and infrastructure systems.
-                        I enjoy learning new technologies and turning ideas into real-world projects.
+                        I'm a Software Engineer from Portugal passionate about building modern,
+                        scalable, and user-focused web applications. I enjoy working across the
+                        entire development lifecycle, from designing intuitive user interfaces to
+                        developing robust backend systems and deploying reliable, self-hosted
+                        infrastructure.
+                        <br />
+                        <br />
+                        Beyond software engineering, I have a strong interest in DevOps, server
+                        administration, virtualization, and cloud technologies, always looking for
+                        opportunities to learn and explore new tools.
+                        <br />
+                        <br />
+                        I also enjoy graphic design with Adobe Photoshop and Illustrator, as well
+                        as 3D modelling and 3D printing, combining creativity with engineering to
+                        transform ideas into complete, real-world solutions.
                     </p>
 
                     <div className="flex flex-row justify-between gap-2 mt-10 w-full">
